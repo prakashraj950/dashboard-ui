@@ -20,12 +20,42 @@ const useCommonStyles = makeStyles(theme => ({
 
     },
     Title: {
-        fontSize: '20px',
-        fontWeight: 500,        
+        "&.MuiTypography-root": {
+            fontSize: '20px',
+            fontWeight: 500,
+            color: '#3E3E3E'
+        }
     },
     BoxTitle: {
-        fontSize: '18px',
-        fontWeight: 500,        
+        "&.MuiTypography-root": {
+            fontSize: '16px',
+            fontWeight: 500,
+            color: "#000000"
+        }
+    },
+    minFont: {
+        "&.MuiTypography-root": {
+            fontSize: '14px',
+            fontWeight: 400,
+            color: '#000000'
+        }
+    },
+    subTitle: {
+        "&.MuiTypography-root": {
+            fontSize: '14px',
+            fontWeight: 400,
+        }
+    },
+    OfficeGirlTwo: {
+        [theme.breakpoints.down('xs')]: {
+     
+        },
+        [theme.breakpoints.down('sm')]: {
+            "&svg": {
+                width: '100px'
+            }
+        },
+
     }
 
 
