@@ -10,6 +10,15 @@ import {
 } from '@mui/icons-material';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ReactComponent as NavIcon1 } from "../../assets/Navbar/NavIcon1.svg"
+import { ReactComponent as NavIcon2 } from "../../assets/Navbar/NavIcon2.svg"
+import { ReactComponent as NavIcon3 } from "../../assets/Navbar/NavIcon3.svg"
+import { ReactComponent as NavIcon4 } from "../../assets/Navbar/NavIcon4.svg"
+import { ReactComponent as NavIcon5 } from "../../assets/Navbar/NavIcon5.svg"
+import { ReactComponent as NavIcon6 } from "../../assets/Navbar/NavIcon6.svg"
+import { ReactComponent as NavIcon7 } from "../../assets/Navbar/NavIcon7.svg"
+import { ReactComponent as NavIcon8 } from "../../assets/Navbar/NavIcon8.svg"
+import { ReactComponent as NavIcon9 } from "../../assets/Navbar/NavIcon9.svg"
 
 
 export default function SideMenu(params) {
@@ -19,22 +28,47 @@ export default function SideMenu(params) {
         {
             route_name: 'Upcoming Events',
             route: '/upcoming_events',
-            icon: <ConfirmationNumberIcon />
+            icon: <NavIcon1 />
         },
         {
             route_name: 'Past Events',
             route: '/past_events',
-            icon: <HistoryIcon />
+            icon: <NavIcon2 />
         },
         {
             route_name: 'Organizers',
             route: '/organizers',
-            icon: <PeopleIcon />
+            icon: <NavIcon3 />
         },
         {
             route_name: 'Account',
             route: '/account',
-            icon: <ManageAccountsIcon />
+            icon: <NavIcon4 />
+        },
+        {
+            route_name: 'Account',
+            route: '/account',
+            icon: <NavIcon5 />
+        },
+        {
+            route_name: 'Account',
+            route: '/account',
+            icon: <NavIcon6 />
+        },
+        {
+            route_name: 'Account',
+            route: '/account',
+            icon: <NavIcon7 />
+        },
+        {
+            route_name: 'Account',
+            route: '/account',
+            icon: <NavIcon8 />
+        },
+        {
+            route_name: 'Account',
+            route: '/account',
+            icon: <NavIcon9 />
         }
     ]);
 
@@ -44,7 +78,7 @@ export default function SideMenu(params) {
             {menuData.map((item, index) => (
                 <ListItem key={item?.route_name} disablePadding
                     sx={{
-                        padding: '5px 15px',
+                        padding: '5px',
                         '&:before': {
                             content: '""',
                             position: 'absolute',
@@ -61,6 +95,7 @@ export default function SideMenu(params) {
                     <ListItemButton
                         onClick={() => navigate(item.route)}
                         sx={{
+                            justifyContent: 'center',
                             backgroundColor: location.pathname === item.route ? '#1976d2' : 'transparent',
                             color: location.pathname === item.route ? '#fff' : '#000',
                             borderRadius: location.pathname === item.route ? '8px' : '0',
@@ -69,10 +104,10 @@ export default function SideMenu(params) {
                             }
                         }}
                     >
-                        <ListItemIcon sx={{ color: location.pathname === item.route ? '#fff' : '#000' }}>
+                        <ListItemIcon sx={{ "&.MuiListItemIcon-root": { minWidth: 'unset' }, "& svg": { height: '25px', width: '25px' }, color: location.pathname === item.route ? '#fff' : '#000' }}>
                             {item?.icon}
                         </ListItemIcon>
-                        <ListItemText sx={{ "& .MuiTypography-root ": { fontSize: '14px' } }} primary={item.route_name} />
+                        {/* <ListItemText sx={{ "& .MuiTypography-root ": { fontSize: '14px' } }} primary={item.route_name} /> */}
                     </ListItemButton>
                 </ListItem>
             ))}

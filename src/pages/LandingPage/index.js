@@ -1,6 +1,10 @@
-export default function LandingPage(params) {
+import { Typography } from "@mui/material";
+import useCommonStyles from "../../Styles/CommonStyles";
 
-    return <>
-        Dashboard
+export default function LandingPage(params) {
+    const commonStyles = useCommonStyles();
+
+    return <>     
+        <Typography className={commonStyles.Title}>HR Employee</Typography>
     </>
 }

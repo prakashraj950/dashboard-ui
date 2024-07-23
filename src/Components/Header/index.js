@@ -8,17 +8,29 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 // import LogoImage from "../../assets/Login/LogoImage.png";
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, InputAdornment, Menu, MenuItem, TextField } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import SideMenu from '../SideMenu';
+import { ReactComponent as Logo } from "../../assets/Header/Logo.svg"
+import { ReactComponent as SearchIcon } from "../../assets/Header/SearchIcon.svg"
+import { ReactComponent as ProfileIcon } from "../../assets/Header/ProfileIcon.svg"
+import { ReactComponent as DayModeIcon } from "../../assets/Header/DayModeIcon.svg"
+import { ReactComponent as SurfaceIcon } from "../../assets/Header/SurfaceIcon.svg"
+import { ReactComponent as NotificationIcon } from "../../assets/Header/NotificationIcon.svg"
+import { ReactComponent as ChatIcon } from "../../assets/Header/ChatIcon.svg"
+import { ReactComponent as SettingsIcon } from "../../assets/Header/SettingsIcon.svg"
 
 
-const drawerWidth = 240;
+import useCommonStyles from '../../Styles/CommonStyles';
 
+
+
+const drawerWidth = 80;
 export default function Header({ children, openBar = true }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const navigate = useNavigate();
+    const commonStyles = useCommonStyles()
     // const userDetails = getUserDetails();
 
 
@@ -34,31 +46,58 @@ export default function Header({ children, openBar = true }) {
     return (
         <Box sx={{ display: 'flex', height: '100%', width: '100%' }}>
             <CssBaseline />
-            <AppBar position="fixed" sx={{ backgroundColor: "#232A33", zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-                <Toolbar>
-                    <Box sx={{ flexGrow: 1 }}>
-                        {/* <img src={LogoImage} style={{}} /> */}
+            <AppBar position="fixed" sx={{ backgroundColor: "#FFFFFF", justifyContent: 'center', boxShadow: "4px 4px 25px 0px #00000026", height: '80px', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+                <Toolbar sx={{ minHeight: 80 }}>
+                    <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                        <Logo />
+
+                        <TextField
+                            placeholder='Search'
+                            className={commonStyles.headerInput}
+                            sx={{ marginLeft: { md: '80px', sm: '80px', xl: '100px' } }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
                     </Box>
 
-                    <div>
+                    <Box sx={{ display: 'flex', gap: '10px' }}>
+                        <IconButton>
+                            <DayModeIcon style={{ height: "18px" }} />
+                        </IconButton>
+
+                        <IconButton>
+                            <SurfaceIcon style={{ height: "18px" }} />
+                        </IconButton>
+
+                        <IconButton>
+                            <ChatIcon style={{ height: "18px" }} />
+                        </IconButton>
+
+                        <IconButton>
+                            <NotificationIcon style={{ height: "18px" }} />
+                        </IconButton>
+
+                        <IconButton>
+                            <SettingsIcon style={{ height: "18px" }} />
+                        </IconButton>
+
                         <IconButton
                             size="large"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            onClick={handleMenu}
+
                             color="inherit"
                         >
-                            <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                                <AccountCircle />
-                                <Box sx={{ textAlign: 'left' }}>
-                                    <Typography sx={{ fontSize: '14px', color: "#FFFFFF", fontWeight: 700 }}>{'jj'}</Typography>
-                                    <Typography sx={{ fontSize: '12px', color: "#FFFFFF" }}>{"admin"}</Typography>
-                                </Box>
-                            </Box>
+                            <ProfileIcon />
                         </IconButton>
 
-                    </div>
+                    </Box>
 
 
                 </Toolbar>
@@ -70,12 +109,20 @@ export default function Header({ children, openBar = true }) {
                 sx={{
                     width: openBar ? drawerWidth : 0,
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: { width: openBar ? drawerWidth : 0, boxSizing: 'border-box' },
-                    backgroundColor: '#FFFFFF',
+                    [`& .MuiDrawer-paper`]: {
+                        width: openBar ? drawerWidth : 0,
+                        boxSizing: 'border-box',
+                        marginTop: "145px",
+                        background: "#FFFFFF",
+                        boxShadow: "4px 4px 25px 0px #00000026",
+                        height: "100%",
+                        borderRadius: "0px 40px 0px 0px",
+                    },
+                    // backgroundColor: '#FFFFFF',
 
                 }}
             >
-                <Toolbar />
+                {/* <Toolbar /> */}
                 <Box sx={{ overflow: 'auto' }}>
                     {/* <Divider /> */}
 
@@ -85,13 +132,15 @@ export default function Header({ children, openBar = true }) {
 
 
 
-            <Box component="main" sx={{ flexGrow: 1, p: 3, width: `calc(100% - ${drawerWidth}px)` }}>
-                <Toolbar />
+            <Box component="main" sx={{ flexGrow: 1, px: 4, py: 3, width: `calc(100% - ${drawerWidth}px)` }}>
+                {/* <Toolbar  /> */}
+                <Box sx={{ mt: '145px' }}>
 
-                {children}
+                    {children}
+                </Box>
             </Box>
 
 
-        </Box>
+        </Box >
     );
 }
