@@ -33,7 +33,7 @@ function CustomTabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 0 }}>{children}</Box>}
+            {value === index && <Box sx={{ p: 0, width: '100%' }}>{children}</Box>}
         </div>
     );
 }
@@ -52,6 +52,7 @@ const JobCard = ({ item }) => {
     return (
         <Box sx={{
             height: 320,
+            minWidth: 250,
             width: { md: 290, xs: "100%" },
             boxShadow: "4px 4px 25px 0px #00000026",
             borderRadius: '5px',
@@ -73,8 +74,8 @@ const JobCard = ({ item }) => {
                 <Box sx={{
                     padding: '10px', height: '80px',
                     width: 100,
-                    color: '#0A66C2',
-                    backgroundColor: '#D9E4EF',
+                    color: item.color,
+                    backgroundColor: item.backgroundColor,
                     borderRadius: '5px',
                     display: 'flex',
                     justifyContent: 'center',
@@ -109,24 +110,32 @@ export default function JobList(params) {
     const data = [
         {
             role: 'Python Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
-            image: PythonIcon
+            image: PythonIcon,
+            backgroundColor: '#D9E4EF',
+            color: "#0A66C2"
         },
         {
             role: 'Angular Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
-            image: AngularIcon
+            image: AngularIcon,
+            backgroundColor: '#73A1FB',
+            color: "#FFFFFF"
         },
         {
             role: 'Java Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
-            image: JavaIcon
+            image: JavaIcon,
+            backgroundColor: '#2F73A0',
+            color: "#FFFFFF"
         },
         {
             role: 'UX/UI Designers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
-            image: UiuxIcon
+            image: UiuxIcon,
+            backgroundColor: '#0A66C2',
+            color: "#FFFFFF"
         },
     ];
 
     return <Box sx={{
-        padding: '10px 10px 0px 10px',
+        padding: '10px 10px 20px 10px',
         backgroundColor: '#FFFFFF',
         borderRadius: '5px',
         boxShadow: "4px 4px 25px 0px #00000026"

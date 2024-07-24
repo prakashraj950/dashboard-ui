@@ -94,14 +94,14 @@ const InterviewCard = ({ interview }) => {
                             <TableCell className={classes.tableCell} style={{ textAlign: 'center', padding: 1 }}>
                                 <Grid container columnSpacing={1}  >
 
-                                    <Grid item sm={6} xs={6} sx={{ borderRight: '1px solid #CCC' }} display={"flex"} justifyContent={"center"}>
+                                    <Grid item sm={6} xs={6} sx={{ borderRight: '1px solid #CCC', padding: '15px' }} display={"flex"} justifyContent={"center"}>
                                         <Box>
                                             <CalenIcon fontSize="small" />
                                             <Typography variant="body2" sx={{ color: '#0A66C2' }}>{interview.date}</Typography>
                                         </Box>
                                     </Grid>
 
-                                    <Grid item sm={6} xs={6} display={"flex"} justifyContent={"center"}>
+                                    <Grid item sm={6} xs={6} sx={{ padding: '15px' }} display={"flex"} justifyContent={"center"}>
                                         <Box>
                                             <ClockIcon fontSize="small" />
                                             <Typography variant="body2" sx={{ color: '#0A66C2' }}>{interview.time}</Typography>

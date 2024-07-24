@@ -15,6 +15,7 @@ import UpcomingList from "./UpcomingList";
 import ActivityList from "./ActivityList";
 import JobList from "./JobList";
 import CandidateList from "./CandidateList";
+import HiringCandidate from "./HiringCandidate";
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
     ({
@@ -139,7 +140,7 @@ export default function LandingPage(params) {
                     <CandidateList />
                 </Box>
             </Grid>
-            <Grid item sm={3} mt={2}>
+            <Grid item sm={3} xs={12} mt={2}>
                 <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', px: '10px' }}>
                     <DateRangeCalendar calendars={1}
                         sx={{
@@ -158,7 +159,7 @@ export default function LandingPage(params) {
                         slots={{ day: MuiDateRangePickerDay }}
                     />
 
-                    <Box width={"100%"} mt={2}>
+                    <Box width={"100%"} mt={3}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Typography className={commonStyles.BoxTitle}>Upcomings</Typography>
                             <Typography sx={{ color: '#0A66C2', textDecoration: 'underline' }} >View All</Typography>
@@ -176,6 +177,17 @@ export default function LandingPage(params) {
 
                             <Box mt={2}>
                                 <ActivityList />
+                            </Box>
+                        </Box>
+
+                        <Box mt={3}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Typography className={commonStyles.BoxTitle}>Hiring Candidates</Typography>
+                                <Typography sx={{ color: '#0A66C2', textDecoration: 'underline' }} >View All</Typography>
+                            </Box>
+
+                            <Box mt={2}>
+                                <HiringCandidate />
                             </Box>
                         </Box>
                     </Box>
