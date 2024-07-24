@@ -14,6 +14,7 @@ import { DateRangePickerDay as MuiDateRangePickerDay } from '@mui/x-date-pickers
 import UpcomingList from "./UpcomingList";
 import ActivityList from "./ActivityList";
 import JobList from "./JobList";
+import CandidateList from "./CandidateList";
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
     ({
@@ -46,7 +47,7 @@ const DateRangePickerDay = styled(MuiDateRangePickerDay)(
 export default function LandingPage(params) {
     const commonStyles = useCommonStyles();
 
-    return <>
+    return <Box sx={{ mb: 2 }}>
         <Typography className={commonStyles.Title}>HR Employee</Typography>
         <Typography className={commonStyles.subTitle}>Enjoy your selecting potential candidates Tracking and Management System.</Typography>
 
@@ -126,12 +127,16 @@ export default function LandingPage(params) {
             </Grid>
         </Grid >
 
-        <Grid container spacing={2}>
+        <Grid container spacing={2} >
             <Grid item sm={9} mt={2}>
                 <InterviewList />
 
                 <Box mt={2}>
                     <JobList />
+                </Box>
+
+                <Box mt={2} mb={2}>
+                    <CandidateList />
                 </Box>
             </Grid>
             <Grid item sm={3} mt={2}>
@@ -178,5 +183,6 @@ export default function LandingPage(params) {
 
             </Grid>
         </Grid>
-    </>
+
+    </Box>
 }

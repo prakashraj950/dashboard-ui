@@ -10,10 +10,17 @@ import {
     Button,
     Tabs,
     Tab,
+    Stack,
 } from '@mui/material';
 import { ReactComponent as SearchIcon } from "../../../assets/Header/SearchIcon.svg";
 import useCommonStyles from '../../../Styles/CommonStyles';
-import { ReactComponent as FilterIcon } from "../../../assets/LandingPage/FilterIcon.svg"
+import { ReactComponent as FilterIcon } from "../../../assets/LandingPage/FilterIcon.svg";
+import PythonIcon from "../../../assets/LandingPage/PythonIcon.svg"
+import AngularIcon from "../../../assets/LandingPage/AngularIcon.svg"
+import JavaIcon from "../../../assets/LandingPage/JavaIcon.svg"
+import UiuxIcon from "../../../assets/LandingPage/UiuxIcon.svg"
+import { Upcoming } from '@mui/icons-material';
+import { ReactComponent as UpIcon } from "../../../assets/LandingPage/UpIcon.svg"
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -26,7 +33,7 @@ function CustomTabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <Box sx={{ p: 0 }}>{children}</Box>}
         </div>
     );
 }
@@ -41,32 +48,51 @@ function a11yProps(index) {
 }
 
 
-const JobCard = ({ title, jobId, totalApplicants, applicantsChange }) => {
+const JobCard = ({ item }) => {
     return (
-        <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-                <Typography variant="h5" component="div">
-                    {title}
-                </Typography>
-                <Typography color="text.secondary" gutterBottom>
-                    #{jobId}
-                </Typography>
-                <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Typography variant="body2" component="div">
-                        Total Applicants: {totalApplicants}
-                    </Typography>
-                    <Chip
-                        label={`${applicantsChange}% vs Last Month`}
-                        color={applicantsChange >= 0 ? 'success' : 'error'}
-                        variant="outlined"
-                        size="small"
-                    />
+        <Box sx={{
+            height: 320,
+            width: { md: 290, xs: "100%" },
+            boxShadow: "4px 4px 25px 0px #00000026",
+            borderRadius: '5px',
+            backgroundColor: "#FFFFFF",
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <Box sx={{ display: 'flex', flexGrow: 1, alignItems: 'center', gap: '10px', padding: '10px 15px', borderBottom: '1px solid #CCC' }}>
+                <Stack sx={{ flexGrow: 1 }} direction={"row"} alignItems={"center"} gap={"20px"} >
+                    <img src={item.image} style={{ height: '' }} />
+                    <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>{item.role}</Typography>
+                </Stack>
+
+                <Typography sx={{ fontWeight: 500, fontSize: '14px' }}>#{item.applicant_number}</Typography>
+            </Box>
+
+            <Box sx={{ flexGrow: 2, display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>{item.position}</Typography>
+                <Box sx={{
+                    padding: '10px', height: '80px',
+                    width: 100,
+                    color: '#0A66C2',
+                    backgroundColor: '#D9E4EF',
+                    borderRadius: '5px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Typography sx={{ fontSize: "25px" }} >258</Typography>
                 </Box>
-                <Typography variant="body2" color="text.secondary">
-                    6 mins ago
-                </Typography>
-            </CardContent>
-        </Card>
+                <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>Total Applicants</Typography>
+            </Box>
+
+            <Box sx={{ flexGrow: 1, padding: '5px 20px', borderTop: '1px solid #CCC', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Stack sx={{ flexGrow: 1 }} direction={"row"} alignItems={"center"} gap={"5px"} >
+                    <Typography sx={{ fontSize: '12px', color: '#0A66C2' }}><UpIcon /> </Typography>
+                    <Typography sx={{ fontSize: '12px', color: '#3E3E3E' }} ><span style={{ fontSize: '12px', color: '#0A66C2' }}>{item.last_month_progress}%</span> vs Last month</Typography>
+                </Stack>
+                <Typography sx={{ fontSize: '12px', color: '#3E3E3E' }}>{item?.updatedAt}</Typography>
+            </Box>
+        </Box>
     );
 };
 
@@ -80,8 +106,27 @@ export default function JobList(params) {
         setValue(newValue);
     };
 
+    const data = [
+        {
+            role: 'Python Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
+            image: PythonIcon
+        },
+        {
+            role: 'Angular Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
+            image: AngularIcon
+        },
+        {
+            role: 'Java Developers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
+            image: JavaIcon
+        },
+        {
+            role: 'UX/UI Designers', position: 'Senior Developers', count: 258, updatedAt: '9 min ago', last_month_progress: 28, applicant_number: '0123',
+            image: UiuxIcon
+        },
+    ];
+
     return <Box sx={{
-        padding: '10px',
+        padding: '10px 10px 0px 10px',
         backgroundColor: '#FFFFFF',
         borderRadius: '5px',
         boxShadow: "4px 4px 25px 0px #00000026"
@@ -152,13 +197,32 @@ export default function JobList(params) {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-             
+                <Box className="customScroll" sx={{ width: '100%', display: 'flex', padding: '20px', overflowX: 'auto', gap: '20px' }}>
+                    {data.map((ival) => {
+                        return <JobCard
+                            item={ival}
+                        />
+                    })}
+
+                </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-             
+                <Box className="customScroll" sx={{ width: '100%', display: 'flex', padding: '20px', overflowX: 'auto', gap: '20px' }}>
+                    {data.map((ival) => {
+                        return <JobCard
+                            item={ival}
+                        />
+                    })}
+                </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-         
+                <Box className="customScroll" sx={{ width: '100%', display: 'flex', padding: '20px', overflowX: 'auto', gap: '20px' }}>
+                    {data.map((ival) => {
+                        return <JobCard
+                            item={ival}
+                        />
+                    })}
+                </Box>
             </CustomTabPanel>
 
         </Box>
