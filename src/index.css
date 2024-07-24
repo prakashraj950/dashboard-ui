@@ -37,3 +37,24 @@ body,
     width: 200px;
   }
 }
+
+
+
+.customScroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+  /* background-color: #7D47EF; */
+  background-color: #0A66C2;
+  border-radius: 5px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px lightgray;
+  border-radius: 5px;
+}
+
+.MuiDateRangeCalendar-root > :first-child {
+  display: none;
+}

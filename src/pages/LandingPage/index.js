@@ -6,8 +6,42 @@ import { ReactComponent as FileIcon } from "../../assets/LandingPage/FileIcon.sv
 import { ReactComponent as Office_girl_2 } from "../../assets/LandingPage/Office_girl_2.svg"
 import { ReactComponent as Office_girl_1 } from "../../assets/LandingPage/Office_girl_1.svg"
 import EmployeeChart from "./EmployeeChart";
+import InterviewList from "./InterviewList";
+import { DateRangeCalendar } from "@mui/x-date-pickers-pro";
+import dayjs from "dayjs";
+import { styled } from "@mui/styles";
+import { DateRangePickerDay as MuiDateRangePickerDay } from '@mui/x-date-pickers-pro/DateRangePickerDay';
+import UpcomingList from "./UpcomingList";
+import ActivityList from "./ActivityList";
+import JobList from "./JobList";
 
-
+const DateRangePickerDay = styled(MuiDateRangePickerDay)(
+    ({
+        theme,
+        isHighlighting,
+        isStartOfHighlighting,
+        isEndOfHighlighting,
+        outsideCurrentMonth,
+    }) => ({
+        ...(!outsideCurrentMonth &&
+            isHighlighting && {
+            borderRadius: 0,
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.common.white,
+            '&:hover, &:focus': {
+                backgroundColor: theme.palette.primary.dark,
+            },
+        }),
+        ...(isStartOfHighlighting && {
+            borderTopLeftRadius: '50%',
+            borderBottomLeftRadius: '50%',
+        }),
+        ...(isEndOfHighlighting && {
+            borderTopRightRadius: '50%',
+            borderBottomRightRadius: '50%',
+        }),
+    }),
+);
 
 export default function LandingPage(params) {
     const commonStyles = useCommonStyles();
@@ -91,5 +125,58 @@ export default function LandingPage(params) {
                 </Box>
             </Grid>
         </Grid >
+
+        <Grid container spacing={2}>
+            <Grid item sm={9} mt={2}>
+                <InterviewList />
+
+                <Box mt={2}>
+                    <JobList />
+                </Box>
+            </Grid>
+            <Grid item sm={3} mt={2}>
+                <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', px: '10px' }}>
+                    <DateRangeCalendar calendars={1}
+                        sx={{
+                            backgroundColor: '#FFFFFF',
+                            boxShadow: "4px 4px 25px 0px #00000026",
+                            borderRadius: '3px',
+                            // width: { xl: '300px', md: '100%', xs: '100%', sm: '100%' }
+                            "&.MuiDateRangeCalendar-root": {
+                                width: '100%'
+                            },
+                            "& .MuiDateRangeCalendar-monthContainer": {
+                                width: '100%'
+                            }
+                        }}
+                        defaultValue={[dayjs('2024-07-17'), dayjs('2024-07-30')]}
+                        slots={{ day: MuiDateRangePickerDay }}
+                    />
+
+                    <Box width={"100%"} mt={2}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Typography className={commonStyles.BoxTitle}>Upcomings</Typography>
+                            <Typography sx={{ color: '#0A66C2', textDecoration: 'underline' }} >View All</Typography>
+                        </Box>
+
+                        <Box mt={2}>
+                            <UpcomingList />
+                        </Box>
+
+                        <Box mt={3}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Typography className={commonStyles.BoxTitle}>Activity</Typography>
+                                <Typography sx={{ color: '#0A66C2', textDecoration: 'underline' }} >View All</Typography>
+                            </Box>
+
+                            <Box mt={2}>
+                                <ActivityList />
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+
+            </Grid>
+        </Grid>
     </>
 }
