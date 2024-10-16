@@ -1,0 +1,31 @@
+# Use the official Node.js image to run build and deploy commands
+image: node:16
+
+# Caching 'node_modules' will make the build faster
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - deploy
+
+# Build stage
+build_job:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+
+# Deployment to GitLab Pages (For static React builds)
+pages:
+  stage: deploy
+  script:
+    - mv build public  # GitLab Pages requires content in a 'public' directory
+  artifacts:
+    paths:
+      - public
